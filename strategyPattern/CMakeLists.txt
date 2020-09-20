@@ -4,14 +4,19 @@ project(StrategyPattern VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src/Duck")
+include_directories(
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Client  
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Interface  
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Algorithm  
+)
 
 add_executable(StrategyPattern
     src/main.cpp
-    src/Duck/IFlyBehavior.hpp
-    src/Duck/Duck.hpp
-    src/Duck/MallardDuck.hpp
-    src/Duck/RubberDuck.hpp
-    src/Duck/FlyNoWay.hpp
-    src/Duck/FlyWithWings.hpp
+    src/Interface/IFlyBehavior.hpp
+    src/Client/Duck.hpp
+    src/Client/MallardDuck.hpp
+    src/Client/RubberDuck.hpp
+    src/Algorithm/FlyNoWay.hpp
+    src/Algorithm/FlyWithWings.hpp
 )
