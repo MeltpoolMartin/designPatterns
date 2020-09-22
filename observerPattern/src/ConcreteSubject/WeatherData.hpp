@@ -15,6 +15,7 @@ class WeatherData : public ISubject {
 
  public:
   WeatherData() : m_Observers({}), m_fTemperature(0.0f), m_iHumidity(-1){};
+  ~WeatherData() { std::cout << "Destructor WeatherData" << std::endl; }
   void registerObserver(IObserver* observer) override {
     std::cout << "Register " << observer << " as observer" << std::endl;
     m_Observers.push_back(observer);
