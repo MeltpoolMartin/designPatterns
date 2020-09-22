@@ -21,8 +21,8 @@ class CurrentConditionDisplay : public IObserver {
     display();
   };
   void display() {
-    std::cout << "Current temperature: " << m_fTemperature << std::endl;
-    std::cout << "Current humidity: " << m_iHumidity << std::endl;
+    std::cout << "Current temperature: " << m_fTemperature << "°C" << std::endl;
+    std::cout << "Current rel. humidity: " << m_iHumidity << "%" << std::endl;
   };
 };
 
