@@ -12,14 +12,15 @@ class StatisticsDisplay : public IObserver {
   std::vector<int> m_humidities;
 
  public:
-  StatisticsDisplay(ISubject* subject) : m_temperatures({}), m_humidities({}) {
-    subject->registerObserver(this);
-  }
-  void update(const float& temperature, const int& humidity) {
+  StatisticsDisplay() : m_temperatures({}), m_humidities({}){};
+  void update(const float temperature, const int humidity) {
     m_temperatures.push_back(temperature);
     m_humidities.push_back(humidity);
     display();
   };
+  void subscribe(const std::shared_ptr<ISubject>& subject) {
+    subject->registerObserver(shared_from_this());
+  }
   void display() {
     auto meanTemperature =
         std::accumulate(m_temperatures.begin(), m_temperatures.end(), 0.0f) /

@@ -12,14 +12,15 @@ class CurrentConditionDisplay : public IObserver {
   int m_iHumidity;
 
  public:
-  CurrentConditionDisplay(ISubject* subject) {
-    subject->registerObserver(this);
-  };
-  void update(const float& temperatureOut, const int& humidityOut) override {
-    m_fTemperature = temperatureOut;
-    m_iHumidity = humidityOut;
+  CurrentConditionDisplay(){};
+  void update(const float temperature, const int humidity) override {
+    m_fTemperature = temperature;
+    m_iHumidity = humidity;
     display();
   };
+  void subscribe(const std::shared_ptr<ISubject>& subject) {
+    subject->registerObserver(shared_from_this());
+  }
   void display() {
     std::cout << "Current temperature: " << m_fTemperature << "°C" << std::endl;
     std::cout << "Current rel. humidity: " << m_iHumidity << "%" << std::endl;
