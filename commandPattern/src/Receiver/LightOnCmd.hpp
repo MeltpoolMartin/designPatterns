@@ -6,12 +6,12 @@
 
 class LightOnCmd : public ICommand {
  public:
-  LightOnCmd(Light* light) : m_pLight(light) {}
+  LightOnCmd(std::shared_ptr<Light> light) : m_pLight(light) {}
   void execute() override { m_pLight->lightOn(); }
   void undo() override { m_pLight->lightOff(); }
 
  private:
-  Light* m_pLight;
+  std::shared_ptr<Light> m_pLight;
 };
 
 #endif

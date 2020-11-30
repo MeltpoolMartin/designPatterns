@@ -4,21 +4,17 @@
 
 int main() {
   // Receiver
-  Light* pLight = new Light();
-  LightOnCmd* pLightOn = new LightOnCmd(pLight);
-  LightOffCmd* pLightOff = new LightOffCmd(pLight);
+  auto pLight = std::make_shared<Light>();
+  auto pLightOn = std::make_shared<LightOnCmd>(pLight);
+  auto pLightOff = std::make_shared<LightOffCmd>(pLight);
   // Invoker
-  RemoteControl* pRemote = new RemoteControl();
-  pRemote->setCommand(pLightOn);
-  pRemote->pressButton();
-  pRemote->pressUndo();
-  pRemote->setCommand(pLightOff);
-  pRemote->pressButton();
-  pRemote->pressUndo();
+  RemoteControl remote;
+  remote.setCommand(pLightOn);
+  remote.pressButton();
+  remote.pressUndo();
+  remote.setCommand(pLightOff);
+  remote.pressButton();
+  remote.pressUndo();
 
-  delete pLight;
-  delete pLightOn;
-  delete pLightOff;
-  delete pRemote;
   return 0;
 }
